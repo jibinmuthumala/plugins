@@ -38,7 +38,7 @@
     <td><?php echo $data->first_name;?></td>
     <td><?php echo $data->last_name;?></td>
     <td><?php echo $data->email;?></td>
-    <td><?php echo $data->Your_comments;?></td>
+    <td><?php echo $data->comments;?></td>
     <td><button id="element" class="show-modal" 
              onClick="edit_contact('<?php echo $data->id;?>');" >edit</button> 
       
@@ -70,13 +70,13 @@
               <br>
               <tr>
                 <th>Email id </th>
-                <td><input type="text" name="email" id="mail" value="<?php echo $data->email;?>">
+                <td><input type="text" name="email" id="email" value="<?php echo $data->email;?>">
                   <input type="hidden" name="id" id="id"></td>
               </tr>
               <br>
               <tr>
-                <th>Cmments  </th>
-                <td><input type="text" name="Your_comments" id="Your_comments" value="<?php echo $data->Your_comments;?>"></td>
+                <th>Comments  </th>
+                <td><input type="text" name="comments" id="comments" value="<?php echo $data->comments;?>"></td>
               </tr>
               <br>
               <div class="modal-footer">
