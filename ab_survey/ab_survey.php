@@ -83,7 +83,7 @@ function abform_footer_action_javascript() { ?>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   
   <script type="text/javascript" >
-  include_once("form.php");
+ function edit_contact(id){
   $(document).ready(function(){ 
     var show_btn=$('.show-modal');
     var show_btn=$('.show-modal');
@@ -105,23 +105,38 @@ function abform_footer_action_javascript() { ?>
       });
  
 
-  </script>
-  <script type="text/javascript" >
+  
   ajaxurl = '<?php echo admin_url( 'admin-ajax.php' ) ?>';
   
   var data = {  
         type : "post",
         'action': 'abform_update',
         'id': id
+  };
+        jQuery.post(ajaxurl, data, function(response) {
+        responseData = jQuery.parseJSON( response );
+        if(responseData)
+        {
+          jQuery('#id').val(responseData.id);
+          jQuery('#name').val(responseData.your_name);
+          jQuery('#mail').val(responseData.your_email);
+          jQuery('#comments').val(responseData.your_comments);
+          
+
+        }
+      });
         success:function(id)
         {  $("#testmodal").modal('show');}
     
-        };
+        }
+      
         
         
   </script>
   <?php
-  }  
+  }
+   
+   
   add_action( 'wp_footer', 'abform_footer_action_javascript' );
   add_action("wp_ajax_abform_update" , "abform_update");
   add_action("wp_ajax_nopriv_abform_update" , "abform_update");

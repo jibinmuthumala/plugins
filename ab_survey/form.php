@@ -39,8 +39,8 @@
     <td><?php echo $data->last_name;?></td>
     <td><?php echo $data->email;?></td>
     <td><?php echo $data->Your_comments;?></td>
-    <td><a id="element" class="btn btn-default show-modal" 
-             href="<?=admin_url('admin.php?page=ab_admin_menu&id='.$data->id)?>" >edit</a>
+    <td><button id="element" class="show-modal" 
+             onClick="edit_contact('<?php echo $data->id;?>');" >edit</button> 
       
   </tr>
   <?php
@@ -58,7 +58,7 @@
             </div>
             <div class="modal-body">
                 <form method="post" action="" >
-            <table class="table table-bordered" id="table">
+            <table class="table table-bordered" id="testmodal">
               <tr>
                 <th>first Name  </th>
                 <td><input type="text" name="first_name" id="first_name" value="<?php echo $data->first_name;?>"></td>
@@ -76,12 +76,12 @@
               <br>
               <tr>
                 <th>Cmments  </th>
-                <td><input type="text" name="Your_comments" id="comments" value="<?php echo $data->Your_comments;?>"></td>
+                <td><input type="text" name="Your_comments" id="Your_comments" value="<?php echo $data->Your_comments;?>"></td>
               </tr>
               <br>
               <div class="modal-footer">
                <tr colspan="2">
-                <td colspan="2"><center><input type="submit" name="submit"  class="btn  btn-success"></center></td>
+                <td colspan="2"><center><input type="submit" name="submit"  class="btn btn-success"></center></td>
               </tr>
             </div>
             </table>
