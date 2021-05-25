@@ -78,12 +78,13 @@ function ab_admin_menu_main()
   include(plugin_dir_path( __FILE__ ).'form.php');
 }
 function abform_footer_action_javascript() { ?>
-
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   
   <script type="text/javascript" >
   include_once("form.php");
-  $(document).ready(function(){
+  $(document).ready(function(){ 
     var show_btn=$('.show-modal');
     var show_btn=$('.show-modal');
     //$("#testmodal").modal('show');
@@ -96,38 +97,32 @@ function abform_footer_action_javascript() { ?>
   $(function() {
           $('#element').on('click', function( e ) {
               Custombox.open({
-                  target: '#testmodal-1',
+                  target: '#testmodal',
                   effect: 'fadein'
               });
               e.preventDefault();
           });
       });
+ 
+
   </script>
-  add_action( 'wp_footer', 'abform_footer_action_javascript' );
-  
   <script type="text/javascript" >
   ajaxurl = '<?php echo admin_url( 'admin-ajax.php' ) ?>';
   
-  var data = {
+  var data = {  
+        type : "post",
         'action': 'abform_update',
-        'id': id,success:function(id){  $("#testmodal").modal('show');}
+        'id': id
+        success:function(id)
+        {  $("#testmodal").modal('show');}
     
         };
-        jQuery.post(ajaxurl, data, function(response) {
-          responseData = jQuery.parseJSON( response );
-          if(responseData)
-          {
-            jQuery('#id').val(responseData.id);
-            jQuery('#first_name').val(responseData.first_name);
-            jQuery('#last_name').val(responseData.last_name);
-            jQuery('#mail').val(responseData.email);
-            jQuery('#comments').val(responseData.Your_comments);
-            
-          }
-        });
+        
+        
   </script>
   <?php
-  }
+  }  
+  add_action( 'wp_footer', 'abform_footer_action_javascript' );
   add_action("wp_ajax_abform_update" , "abform_update");
   add_action("wp_ajax_nopriv_abform_update" , "abform_update");
   
@@ -142,3 +137,4 @@ function abform_footer_action_javascript() { ?>
   }
 
 ?>
+
